@@ -1,0 +1,9 @@
+{
+  "name": "dibsWebService",
+  "version": "0.0.1",
+  "dependencies": {
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "gridfs-stream": "1.1.1"
+  }
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "productId": "101",
+    "title": "Gaaralu",
+    "price": "12.45",
+    "images": [
+      "/Users/srujangopu/Desktop/dibs images/download.jpeg",
+      "/Users/srujangopu/Desktop/dibs images/murukku3.jpg"
+    ],
+    "keywords": ["garalu", "snacks"],
+    "metadata":[]
+  },
+  {
+    "productId": "102",
+    "title": "murkulu",
+    "price": "13.45",
+    "images": [
+      "/Users/srujangopu/Desktop/dibs images/download.jpeg",
+      "/Users/srujangopu/Desktop/dibs images/murukku3.jpg"
+    ],
+    "keywords": ["murkulu", "snacks"],
+    "metadata":[]
+  },
+  {
+    "productId": "103",
+    "title": "snacks",
+    "price": "15.45",
+    "images": [
+      "/Users/srujangopu/Desktop/dibs images/download.jpeg",
+      "/Users/srujangopu/Desktop/dibs images/murukku3.jpg"
+    ],
+    "keywords": ["snacks"],
+    "metadata":[]
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "cartId": "1001",
+    "products": [
+      {
+        "productId": "101",
+        "quantity": "2"
+      },
+      {
+        "productId": "102",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "cartId": "1002",
+    "products": [
+      {
+        "productId": "101",
+        "quantity": "2"
+      },
+      {
+        "productId": "102",
+        "quantity": "1"
+      }
+    ]
+  },
+  {
+    "cartId": "1003",
+    "products": [
+      {
+        "productId": "101",
+        "quantity": "2"
+      },
+      {
+        "productId": "102",
+        "quantity": "1"
+      }
+    ]
+  }
+]
