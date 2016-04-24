@@ -3,13 +3,13 @@ var cartService = require('./cartService.js')
 
 app.get('/cart', function (req, res) {
 
-    res.send(cartService.getCart(req.param("cartId")));
+    cartService.getCart(req.header("cartId"), res);
 
 });
 
 app.post('/addToCart', function (req, res) {
 
-    res.send(cartService.addToCart(req.body, req.header("cartId")));
+    cartService.addToCart(req.body, req.header("cartId"), res);
 
 });
 
