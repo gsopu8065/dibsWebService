@@ -22,7 +22,6 @@ var cartService = {
              mongoDbConnection(function(databaseConnection) {
                  databaseConnection.collection('cart', function(error, collection) {
                      collection.insert(cart, {w: 1}, function(err, records){
-                         console.log("Record added as %j",records);
                          res.send(records)
                      })
                  });
@@ -32,9 +31,7 @@ var cartService = {
 
              mongoDbConnection(function(databaseConnection) {
                  databaseConnection.collection('cart', function(error, collection) {
-                     console.log(new mongodb.ObjectID(cartId))
                      collection.update({_id:mongodb.ObjectID(cartId)}, { $push: { cartItems: { $each:  cart.cartItems } } }, {w: 1}, function(err, records){
-                         console.log("Record updated as %j",records);
                          res.send(records)
                      })
                  });
@@ -42,12 +39,41 @@ var cartService = {
          }
     },
 
-    updateCart: function(cart, cartId){
+    updateCart: function(cart, cartId, res){
+
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('cart', function(error, collection) {
+                var document = {_id:mongodb.ObjectID(cartId) , 'cartItems.cartItemId' : cart.cartItems.cartItemId }
+                collection.update(document, { $set: { "cartItems.$": cart.cartItems } }, {w: 1}, function(err, records){
+                    res.send(records)
+                })
+            });
+        });
 
     },
 
-    removeCartItem: function(cartItemId, cartId){
+    removeCartItem: function(cart, cartId, res){
 
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('cart', function(error, collection) {
+                var document = {_id:mongodb.ObjectID(cartId)}
+                collection.update(document, { $pull: { "cartItems": {cartItemId: cart.cartItems.cartItemId} } }, {w: 1}, function(err, records){
+                    res.send(records)
+                })
+            });
+        });
+    },
+
+    emptyCart: function(cartItemId, cartId, res){
+
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('cart', function(error, collection) {
+                var document = {_id:mongodb.ObjectID(cartId)}
+                collection.remove(document,function(err, records){
+                    res.send(records)
+                })
+            });
+        });
     }
 
 }

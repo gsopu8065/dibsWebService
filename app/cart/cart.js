@@ -15,12 +15,18 @@ app.post('/addToCart', function (req, res) {
 
 app.post('/updateCart', function (req, res) {
 
-    res.send(cartService.updateCart(req.body, req.header("cartId")));
+    cartService.updateCart(req.body, req.header("cartId"), res);
 
 });
 
-app.post('/removeCartItem', function (req, res) {
+app.delete('/removeCartItem', function (req, res) {
 
-    res.send(cartService.removeCartItem(req.body, req.header("cartId")));
+    cartService.removeCartItem(req.body, req.header("cartId"), res);
+
+});
+
+app.delete('/emptyCart', function (req, res) {
+
+    cartService.emptyCart(req.body, req.header("cartId"), res);
 
 });

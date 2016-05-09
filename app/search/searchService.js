@@ -1,19 +1,41 @@
-var fs = require('fs')
+var fs = require('fs');
+var mongodb = require('mongodb');
+var mongoDbConnection = require('../mongodb/connection.js');
 
 var searchService = {
 
-    search: function(keyWord){
+    search: function(keyWord, res){
 
-        var contents = fs.readFileSync("../../loadData/search/data.json");
-        var jsonContent = JSON.parse(contents);
-        return jsonContent;
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('product', function(error, collection) {
+                collection.find({ 'keywords': new RegExp(keyWord, 'i') }).toArray(function(err, products) {
+                    res.jsonp(products);
+                });
+            });
+        });
     },
 
-    searchProduct: function(productId){
-        var contents = fs.readFileSync("../../loadData/search/data.json");
-        var jsonContent = JSON.parse(contents);
-        return jsonContent;
+    searchProduct: function(productId, res){
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('product', function(error, collection) {
+                collection.findOne({_id:mongodb.ObjectID(productId)}, function(err, doc){
+                    res.send(doc)
+                })
+            });
+        });
+    },
+
+    addProduct: function(product, res){
+
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('product', function(error, collection) {
+                collection.insert(product, {w: 1}, function(err, records){
+                    res.send(records)
+                })
+            });
+        });
     }
+
 
 }
 
